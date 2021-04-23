@@ -1,0 +1,40 @@
+<body>
+    <div [ngClass]="'banner-area'">
+        <div class='text-center' [ngClass]="'centered-div'" id='register'>
+            <form [formGroup]= "registerForm"  class="form-singup justify-content-center" id='singup-form'>
+                <br>
+                <!-- Username -->
+                <label>     Nombre    </label>
+                <br>
+                <input required type="text" formControlName="usernameinput" #usernameinput id='username' placeholder="">
+                
+                <br>
+                <br>
+                <label>      Apellidos   </label>
+                <br>
+                <input required type="text" formControlName="apellidosinput" #apellidosinput id='apellidos' placeholder="">
+                <br>
+                <br>
+                <label>      Nacimiento   </label>
+                <br>
+                <input required type="text" formControlName="nacimientoinput" #nacimientoinput id='nacimiento' placeholder="">
+                <br>
+                <br>
+                <label>      Profesion   </label>
+                <br>
+                <input required type="text" formControlName="profesioninput" #profesioninput id='profesion' placeholder="">
+                <br>
+                <br>
+                <label>      Vacuna   </label>
+                <br>
+                <input required type="text" formControlName="vacunainput" #vacunainput id='vacuna' placeholder="">
+                
+                <!-- Button -->
+                <br>
+                <br>
+                <button type="button" class="btn btn-outline-info" (click)="registerOnClick()"> Validar </button>
+                
+            </form>
+        </div>
+    </div>
+</body>

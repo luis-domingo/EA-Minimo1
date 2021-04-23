@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
 var cors_1 = __importDefault(require("cors"));
+//incluir las rutas que necesitemos
 var user_routes_1 = __importDefault(require("./routes/user_routes"));
 //generamos la app
 var app = express_1.default();
@@ -15,6 +16,6 @@ app.use(morgan_1.default('dev'));
 app.use(cors_1.default());
 //parametros
 app.set('PORT', process.env.PORT || 8080);
-//routes
+//routes -- IMPORTANTE
 app.use('/api', user_routes_1.default);
 exports.default = app;

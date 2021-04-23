@@ -40,14 +40,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.startConnection = void 0;
-//Database
+//Database conexion
 var mongoose_1 = __importDefault(require("mongoose"));
 function startConnection() {
     return __awaiter(this, void 0, void 0, function () {
         var db;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, mongoose_1.default.connect('mongodb://127.0.0.1:27017/pruebabbdd', {
+                case 0: return [4 /*yield*/, mongoose_1.default.connect('mongodb://127.0.0.1:27017/minimo1', {
                         useNewUrlParser: true,
                         useFindAndModify: false
                     })];

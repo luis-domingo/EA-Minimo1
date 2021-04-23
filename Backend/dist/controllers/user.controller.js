@@ -39,25 +39,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.register = void 0;
+exports.editUsers = exports.getUsers = exports.register = void 0;
 var User_1 = __importDefault(require("../models/User"));
 function register(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, uname, pswrd, email, usr_compare, new_user;
+        var _a, nombre, apellidos, fechanacimiento, profesion, vacuna, usr_compare, new_user;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _a = req.body, uname = _a.uname, pswrd = _a.pswrd, email = _a.email;
-                    console.log("new user creation petition for user ", uname);
+                    _a = req.body, nombre = _a.nombre, apellidos = _a.apellidos, fechanacimiento = _a.fechanacimiento, profesion = _a.profesion, vacuna = _a.vacuna;
+                    console.log("Se quiere añadir a ", nombre);
                     console.log("searching...");
-                    return [4 /*yield*/, User_1.default.findOne({ 'uname': uname })];
+                    return [4 /*yield*/, User_1.default.findOne({ 'nombre': nombre })];
                 case 1:
                     usr_compare = _b.sent();
                     if (!!usr_compare) return [3 /*break*/, 3];
                     new_user = new User_1.default({
-                        uname: uname,
-                        pswrd: pswrd,
-                        email: email
+                        nombre: nombre,
+                        apellidos: apellidos,
+                        fechanacimiento: fechanacimiento,
+                        profesion: profesion,
+                        vacuna: vacuna
                     });
                     return [4 /*yield*/, new_user.save()];
                 case 2:
@@ -70,3 +72,53 @@ function register(req, res) {
     });
 }
 exports.register = register;
+function getUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var users;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, User_1.default.find()];
+                case 1:
+                    users = _a.sent();
+                    res.status(201).json(users);
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+exports.getUsers = getUsers;
+function editUsers(req, res) {
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, nombre, apellidos, fechanacimiento, profesion, vacuna, usr_compare, updatedUser;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, nombre = _a.nombre, apellidos = _a.apellidos, fechanacimiento = _a.fechanacimiento, profesion = _a.profesion, vacuna = _a.vacuna;
+                    console.log("Se quiere modificar a ", nombre);
+                    return [4 /*yield*/, User_1.default.findOne({ 'nombre': nombre })];
+                case 1:
+                    usr_compare = _b.sent();
+                    console.log(usr_compare);
+                    return [4 /*yield*/, User_1.default.findOneAndUpdate({ nombre: nombre }, {
+                            nombre: nombre,
+                            apellidos: apellidos,
+                            fechanacimiento: fechanacimiento,
+                            profesion: profesion,
+                            vacuna: vacuna
+                        }, { new: true })];
+                case 2:
+                    _b.sent();
+                    updatedUser = new User_1.default({
+                        nombre: nombre,
+                        apellidos: apellidos,
+                        fechanacimiento: fechanacimiento,
+                        profesion: profesion,
+                        vacuna: vacuna
+                    });
+                    res.status(201);
+                    return [2 /*return*/, res.json(updatedUser.toJSON())];
+            }
+        });
+    });
+}
+exports.editUsers = editUsers;
